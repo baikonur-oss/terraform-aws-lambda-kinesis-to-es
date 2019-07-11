@@ -36,7 +36,6 @@ patch(libraries)
 s3 = boto3.client('s3')
 
 # consts
-os.environ['TZ'] = "Asia/Tokyo"
 ES_TIMEOUT = 30
 BULK_CHUNK_SIZE = 500
 
