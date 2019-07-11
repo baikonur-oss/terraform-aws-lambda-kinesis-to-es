@@ -13,7 +13,7 @@ variable "timeout" {
   default     = 60
 }
 
-variable "max_batch_size" {
+variable "batch_size" {
   description = "Maximum number of records passed for a single Lambda invocation"
 }
 
