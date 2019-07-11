@@ -1,6 +1,6 @@
-# Amazon Kinesis to S3 log transfer Terraform module
+# Amazon Kinesis to Elasticsearch Service log transfer Terraform module
 
-Terraform module and Lambda for saving JSON log records from Kinesis Data Streams to S3.
+Terraform module and Lambda for saving JSON log records from Kinesis Data Streams to Elasticsearch Service.
 
 ![terraform v0.11.x](https://img.shields.io/badge/terraform-v0.11.x-brightgreen.svg)
 
@@ -31,8 +31,9 @@ module "kinesis_to_elasticsearch" {
   elasticsearch_arn    = "arn:aws:es:ap-northeast-1:0123456789:domain/elasticsearch"
   failed_log_s3_bucket = "failed-log"
   failed_log_s3_prefix = "elasticsearch/"
+  index_name_prefix    = "dev-logs"
+  max_batch_size       = 100
 }
-
 ```
 
 Warning: use same module and package versions!
@@ -56,6 +57,7 @@ For more information on module version pinning, see [Selecting a Revision](https
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
+| batch\_size | Maximum number of records passed for a single Lambda invocation | string | n/a | yes |
 | elasticsearch\_arn | Elasticsearch Service ARN | string | n/a | yes |
 | elasticsearch\_host | Elasticsearch Service endpoint (without https://) | string | n/a | yes |
 | failed\_log\_s3\_bucket | S3 bucket name for saving failed logs (ES API errors etc.) | string | n/a | yes |
@@ -70,7 +72,6 @@ For more information on module version pinning, see [Selecting a Revision](https
 | log\_type\_field | Key name for log type | string | `"log_type"` | no |
 | log\_type\_field\_whitelist | Log type whitelist (if empty, all types will be processed) | list | `<list>` | no |
 | log\_type\_unknown\_prefix | Log type prefix for logs without log type field | string | `"unknown"` | no |
-| max\_batch\_size | Maximum number of records passed for a single Lambda invocation | string | n/a | yes |
 | memory | Lambda Function memory in megabytes | string | `"256"` | no |
 | name | Resource name | string | n/a | yes |
 | runtime | Lambda Function runtime | string | `"python3.7"` | no |
