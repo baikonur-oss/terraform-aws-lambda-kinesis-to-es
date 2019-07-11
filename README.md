@@ -31,8 +31,9 @@ module "kinesis_to_elasticsearch" {
   elasticsearch_arn    = "arn:aws:es:ap-northeast-1:0123456789:domain/elasticsearch"
   failed_log_s3_bucket = "failed-log"
   failed_log_s3_prefix = "elasticsearch/"
+  index_name_prefix    = "dev-logs"
+  max_batch_size       = 100
 }
-
 ```
 
 Warning: use same module and package versions!
