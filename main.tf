@@ -49,6 +49,7 @@ resource "aws_lambda_function" "function" {
       ES_HOST              = "${var.elasticsearch_host}"
       FAILED_LOG_S3_BUCKET = "${var.failed_log_s3_bucket}"
       FAILED_LOG_S3_PREFIX = "${var.failed_log_s3_prefix}"
+      INDEX_NAME_PREFIX    = "${var.index_name_prefix}"
     }
   }
   tags = "${var.tags}"
