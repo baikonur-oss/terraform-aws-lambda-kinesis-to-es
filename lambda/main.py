@@ -45,8 +45,13 @@ FAILED_LOG_S3_PATH_PREFIX = os.environ['FAILED_LOG_S3_PREFIX']
 
 LOG_TYPE_FIELD: str = os.environ['LOG_TYPE_FIELD']
 LOG_TIMESTAMP_FIELD: str = os.environ['LOG_TIMESTAMP_FIELD']
-LOG_TYPE_FIELD_WHITELIST: set = set(str(os.environ['LOG_TYPE_WHITELIST']).split(','))
 LOG_TYPE_UNKNOWN_PREFIX: str = os.environ['LOG_TYPE_UNKNOWN_PREFIX']
+
+WHITELIST: str = str(os.environ['LOG_TYPE_WHITELIST'])
+if WHITELIST == "":
+    LOG_TYPE_FIELD_WHITELIST: set = set()
+else:
+    LOG_TYPE_FIELD_WHITELIST: set = set(WHITELIST.split(','))
 
 ELASTICSEARCH_HOST = os.environ['ES_HOST']
 INDEX_NAME_PREFIX = os.environ['INDEX_NAME_PREFIX']
