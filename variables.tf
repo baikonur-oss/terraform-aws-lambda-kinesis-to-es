@@ -87,7 +87,7 @@ variable "log_timestamp_field" {
 variable "log_type_field_whitelist" {
   description = "Log type whitelist (if empty, all types will be processed)"
   default     = []
-  type        = "list"
+  type        = list(string)
 }
 
 variable "tracing_mode" {
@@ -97,7 +97,7 @@ variable "tracing_mode" {
 
 variable "tags" {
   description = "Tags for Lambda Function"
-  type        = "map"
+  type        = map(string)
   default     = {}
 }
 
@@ -105,3 +105,4 @@ variable "log_retention_in_days" {
   description = "Lambda Function log retention in days"
   default     = 30
 }
+
