@@ -2,7 +2,7 @@
 
 Terraform module and Lambda for saving JSON log records from Kinesis Data Streams to Elasticsearch Service.
 
-![terraform v0.11.x](https://img.shields.io/badge/terraform-v0.11.x-brightgreen.svg)
+![terraform v0.12.x](https://img.shields.io/badge/terraform-v0.12.x-brightgreen.svg)
 
 ## Prerequisites
 1. Records in Kinesis stream must be valid JSON data. Non-JSON data will be saved with `unknown` prefix.
