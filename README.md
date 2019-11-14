@@ -22,11 +22,12 @@ resource "aws_kinesis_stream" "stream" {
 
 module "kinesis_to_elasticsearch" {
   source  = "baikonur-oss/lambda-kinesis-to-es/aws"
+  version = "2.0.0"
 
-  lambda_package_url = "https://github.com/baikonur-oss/terraform-aws-lambda-kinesis-to-es/releases/download/v1.0.0/lambda_package.zip"
+  lambda_package_url = "https://github.com/baikonur-oss/terraform-aws-lambda-kinesis-to-es/releases/download/v2.0.0/lambda_package.zip"
   name               = "kinesis_to_es"
 
-  kinesis_stream_arn   = "${aws_kinesis_stream.stream.arn}"
+  kinesis_stream_arn   = aws_kinesis_stream.stream.arn
   elasticsearch_host   = "search-dev-elasticsearch-xxxxxxxx.ap-northeast-1.es.amazonaws.com"
   elasticsearch_arn    = "arn:aws:es:ap-northeast-1:0123456789:domain/elasticsearch"
   failed_log_s3_bucket = "failed-log"
@@ -34,6 +35,7 @@ module "kinesis_to_elasticsearch" {
   index_name_prefix    = "dev-logs"
   max_batch_size       = 100
 }
+
 ```
 
 Warning: use same module and package versions!
@@ -70,13 +72,13 @@ For more information on module version pinning, see [Selecting a Revision](https
 | log\_retention\_in\_days | Lambda Function log retention in days | string | `"30"` | no |
 | log\_timestamp\_field | Key name for log timestamp | string | `"time"` | no |
 | log\_type\_field | Key name for log type | string | `"log_type"` | no |
-| log\_type\_field\_whitelist | Log type whitelist (if empty, all types will be processed) | list | `<list>` | no |
+| log\_type\_field\_whitelist | Log type whitelist (if empty, all types will be processed) | list(string) | `[]` | no |
 | log\_type\_unknown\_prefix | Log type prefix for logs without log type field | string | `"unknown"` | no |
 | memory | Lambda Function memory in megabytes | string | `"256"` | no |
 | name | Resource name | string | n/a | yes |
 | runtime | Lambda Function runtime | string | `"python3.7"` | no |
 | starting\_position | Kinesis ShardIterator type (see: https://docs.aws.amazon.com/kinesis/latest/APIReference/API_GetShardIterator.html ) | string | `"TRIM_HORIZON"` | no |
-| tags | Tags for Lambda Function | map | `<map>` | no |
+| tags | Tags for Lambda Function | map(string) | `{}` | no |
 | timeout | Lambda Function timeout in seconds | string | `"60"` | no |
 | timezone | tz database timezone name (e.g. Asia/Tokyo) | string | `"UTC"` | no |
 | tracing\_mode | X-Ray tracing mode (see: https://docs.aws.amazon.com/lambda/latest/dg/API_TracingConfig.html ) | string | `"PassThrough"` | no |
