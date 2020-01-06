@@ -122,7 +122,8 @@ def normalize_kinesis_payload(p: dict):
                         logger.debug(f"parsed payload: {payload_parsed}")
 
                         if type(payload_parsed) is not dict:
-                            logger.error(f"Top-level JSON data in CWL payload is not an object, giving up: {payload}")
+                            logger.error(f"Top-level JSON data in CWL payload is not an object, giving up: "
+                                         f"{payload_parsed}")
                             continue
 
                     except JSONDecodeError as e:
