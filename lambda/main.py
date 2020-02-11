@@ -161,10 +161,16 @@ def bad_data_save(data: list, reason: str):
         key += str(uuid.uuid4()) + ".gz"
 
         logger.info(f"Saving failed records to S3: s3://{FAILED_LOG_S3_BUCKET}/{key}")
-        data = '\n'.join(str(f) for f in data)
+        data = '\n'.join(to_str(f) for f in data)
         put_to_s3(key, FAILED_LOG_S3_BUCKET, data)
 
         xray_recorder.end_subsegment()
+
+
+def to_str(a):
+    if type(a) == dict:
+        return json.dumps(a)
+    return a
 
 
 # noinspection PyUnusedLocal
