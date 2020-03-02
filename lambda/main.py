@@ -85,9 +85,6 @@ def handler(event, context):
 
     logger.info(f"Connected to Elasticsearch at https://{ELASTICSEARCH_HOST}")
 
-    failed_data_type = []
-    failed_data_timestamp = []
-
     xray_recorder.begin_subsegment("parse")
     for payload in kinesis.parse_records(raw_records):
         try:
