@@ -1,4 +1,4 @@
-aws-kinesis-agg==1.1.0
+aws-kinesis-agg==1.1.2
 aws-xray-sdk==2.4.2
 certifi==2019.3.9
 elasticsearch==7.0.1
