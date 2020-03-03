@@ -1,6 +1,6 @@
 aws-kinesis-agg==1.1.2
 aws-xray-sdk==2.4.3
-boto3==1.9.156
+boto3==1.12.12
 certifi==2019.11.28
 elasticsearch==7.5.1
 python-dateutil==2.8.1
