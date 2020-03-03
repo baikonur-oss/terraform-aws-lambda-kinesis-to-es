@@ -1,6 +1,6 @@
 aws-kinesis-agg==1.1.2
 aws-xray-sdk==2.4.3
-certifi==2019.3.9
+certifi==2019.11.28
 elasticsearch==7.0.1
 python-dateutil==2.8.0
 requests-aws4auth==0.9
