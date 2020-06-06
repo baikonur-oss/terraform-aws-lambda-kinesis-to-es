@@ -5,4 +5,4 @@ aws-xray-sdk==2.4.3
 certifi==2019.11.28
 elasticsearch==7.5.1
 python-dateutil==2.8.1
-requests-aws4auth==0.9
+requests-aws4auth==1.0
